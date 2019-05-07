@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>springboot-demo</artifactId>
+    <artifactId>apache-poi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>springboot-demo</name>
-    <description>Demo project for Spring Boot</description>
+    <name>apache-poi</name>
+    <description>Apache POI Project for Excel Operations</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,6 +33,12 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
