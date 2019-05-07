@@ -12,7 +12,7 @@ public class WritingExcelTest {
 
     private static WritingServiceImpl writingService = new WritingServiceImpl();
 
-    public static void prepareList(){
+    private static void prepareList(){
         list = new ArrayList<>();
         list.add(new DummyModel(1, "Ramesh", 10, 'A'));
         list.add(new DummyModel(2, "Suresh", 9, 'D'));
@@ -23,6 +23,6 @@ public class WritingExcelTest {
 
     public static void main(String[] args) throws Exception {
         prepareList();
-        writingService.writeExcel(list, "/home/himanshu/Documents/generated.xls", DummyModel.class);
+        writingService.writeExcel(list, "/home/himanshu/Documents/generated2.xls", DummyModel.class);
     }
 }
