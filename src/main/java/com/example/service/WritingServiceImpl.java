@@ -23,7 +23,6 @@ public class WritingServiceImpl {
         Row header = sheet.createRow(0);
         createHeaders(header, t, workbook);
         int rowNum = 1;
-        CellStyle style = getCellStyle(workbook);
         Cell cell;
         Row row;
         for (Object[] object : objects) {
@@ -31,8 +30,7 @@ public class WritingServiceImpl {
             int colNum = 0;
             for (Object field : object) {
                 cell = row.createCell(colNum++);
-                cell.setCellStyle(style);
-                setCellValue(cell, field);
+                setCellValue(cell, field, workbook);
             }
         }
         FileOutputStream outputStream = new FileOutputStream(path);
@@ -47,13 +45,17 @@ public class WritingServiceImpl {
         return cellStyle;
     }
 
-    private void setCellValue(Cell cell, Object field){
+    private void setCellValue(Cell cell, Object field, XSSFWorkbook workbook) {
+        CellStyle cellStyle = getCellStyle(workbook);
         if(field != null){
             if (field instanceof Integer) {
                 cell.setCellValue((Integer) field);
             } else if (field instanceof Double) {
                 cell.setCellValue((Double) field);
             } else if (field instanceof Date) {
+                CreationHelper createHelper = workbook.getCreationHelper();
+                cellStyle.setDataFormat(
+                        createHelper.createDataFormat().getFormat("mm/dd/yyyy hh:mm:ss"));
                 cell.setCellValue((Date) field);
             } else if (field instanceof Boolean) {
                 cell.setCellValue((Boolean) field);
@@ -63,6 +65,7 @@ public class WritingServiceImpl {
         }else{
             cell.setCellValue("");
         }
+        cell.setCellStyle(cellStyle);
     }
 
     private void createHeaders(Row row, Class t, Workbook wb){

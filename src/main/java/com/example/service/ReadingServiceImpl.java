@@ -51,7 +51,11 @@ public class ReadingServiceImpl {
             field.set(object, Double.valueOf(value.toString()).floatValue());
         } else if(field.getType() == char.class || field.getType() == Character.class){
             field.set(object, value.toString().charAt(0));
-        }  else {
+        } else if(field.getType() == boolean.class || field.getType() == Boolean.class){
+            field.set(object, Boolean.valueOf(value.toString()));
+        } else if(field.getType() == Date.class){
+            field.set(object, new Date());
+        } else {
             field.set(object, value);
         }
     }
